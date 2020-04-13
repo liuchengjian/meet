@@ -22,6 +22,7 @@ import com.lchj.meet.widgets.HeaderBar;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.Nullable;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -49,9 +50,12 @@ public class LoginActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
-        ButterKnife.bind(this);
         initView();
+    }
+
+    @Override
+    int initView(@Nullable Bundle savedInstanceState) {
+        return R.layout.activity_login;
     }
 
     private void initView() {

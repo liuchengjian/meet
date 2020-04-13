@@ -1,5 +1,6 @@
 package com.lchj.meet.ui;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -19,7 +20,7 @@ import com.lchj.meet.R;
 import com.lchj.meet.model.User;
 import com.lchj.meet.utils.LiuUtils;
 
-public class RegisterActivity extends AppCompatActivity {
+public class RegisterActivity extends BaseActivity {
 
     @BindView(R.id.mMobileEt)
     EditText mMobileEt;
@@ -33,10 +34,13 @@ public class RegisterActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register);
-        ButterKnife.bind(this);
         mMobileEt.setText(getIntent().getStringExtra("phone"));
         initView();
+    }
+
+    @Override
+    int initView(@Nullable Bundle savedInstanceState) {
+        return R.layout.activity_register;
     }
 
     private void initView() {

@@ -1,5 +1,6 @@
 package com.lchj.meet.ui;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.SaveListener;
@@ -15,12 +16,17 @@ import com.lchj.meet.widgets.TouchPictureView;
 
 public class MainActivity extends BaseActivity {
     private TouchPictureView mTouchPictureView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
         mTouchPictureView = findViewById(R.id.mTouchPictureView);
-        mTouchPictureView.setOnViewResultListener(() -> LiuUtils.makeText(MainActivity.this,"验证成功"));
+        mTouchPictureView.setOnViewResultListener(() -> LiuUtils.makeText(MainActivity.this, "验证成功"));
+    }
+
+    @Override
+    int initView(@Nullable Bundle savedInstanceState) {
+        return R.layout.activity_main;
     }
 
 
