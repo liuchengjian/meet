@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tabs>
+
+    <tab
+        activeColor="@color/common_blue"
+        icon="@drawable/icon_my"
+        id="@+id/tab_home"
+        title="@string/nav_sealed_group"/>
+    <tab
+        activeColor="@color/common_blue"
+        icon="@drawable/icon_my"
+        id="@+id/tab_order"
+        title="@string/nav_detection_task"/>
+
+    <tab
+        activeColor="@color/common_blue"
+        icon="@drawable/icon_my"
+        id="@+id/tab_user"
+        title="@string/nav_my"/>
+
+</tabs>
