@@ -48,6 +48,7 @@ public class AddFriendActivity extends BaseActivity {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mAddFriendAdapter = new AddFriendAdapter(this, modeList);
         mRecyclerView.setAdapter(mAddFriendAdapter);
+        queryAllUser();
     }
 
     private void addModeTitle(String title){
@@ -68,6 +69,7 @@ public class AddFriendActivity extends BaseActivity {
         mode.setPhone(user.getPhone());
         mode.setSex(mode.getSex());
         modeList.add(mode);
+        mAddFriendAdapter.notifyDataSetChanged();
 
     }
 
@@ -89,11 +91,27 @@ public class AddFriendActivity extends BaseActivity {
                             modeList.clear();
                             addModeTitle("查询结果");
                             addModeContent(user);
-                            mAddFriendAdapter.notifyDataSetChanged();
                         }
                     }
                 });
+                queryAllUser();
                 break;
         }
     }
+
+    private void queryAllUser() {
+        BombManager.getInstance().queryAllUser(new FindListener<User>() {
+            @Override
+            public void done(List<User> list, BmobException e) {
+                if (!LiuUtils.isEmpty(list)) {
+                    User user = list.get(0);
+//                            Log.e("user", user.toString());
+                    modeList.clear();
+                    addModeTitle("推荐好友");
+                    addModeContent(user);
+                }
+            }
+        });
+    }
+
 }

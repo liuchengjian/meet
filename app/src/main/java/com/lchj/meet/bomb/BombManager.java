@@ -54,6 +54,11 @@ public class BombManager {
         baseQuery("phone", phone, listener);
     }
 
+    public void queryAllUser(FindListener<User> listener) {
+        BmobQuery<User> query = new BmobQuery<>();
+        query.findObjects(listener);
+    }
+
     public void baseQuery(String key, String value, FindListener<User> listener) {
         BmobQuery<User> query = new BmobQuery<>();
         query.addWhereEqualTo(key, value);
