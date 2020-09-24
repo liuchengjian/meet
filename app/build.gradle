@@ -9,6 +9,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
     }
     useLibrary 'org.apache.http.legacy'
     buildTypes {
@@ -58,5 +59,9 @@ dependencies {
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
     implementation 'com.zhy:base-rvadapter:3.0.3'
     implementation 'org.simple:androideventbus:1.0.5.1'
-
+    //动态权限
+    implementation 'com.github.tbruyelle:rxpermissions:0.12'
+    implementation 'com.jakewharton.rxbinding4:rxbinding:4.0.0'
+    //方法数
+    implementation 'com.android.support:multidex:1.0.3'
 }

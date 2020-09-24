@@ -2,6 +2,9 @@ package com.lchj.meet.ui;
 
 import android.os.Bundle;
 
+import com.lchj.meet.R;
+import com.lchj.meet.utils.StatusBarUtil;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import butterknife.ButterKnife;
@@ -20,9 +23,19 @@ public abstract class BaseActivity extends AppCompatActivity {
             //绑定到butterknife
             mUnbinder = ButterKnife.bind(this);
         }
+        if (initStatusColor() != 0) {
+            StatusBarUtil.setStatusColor(this, false, true, initStatusColor());
+        }
 
     }
-
+    /**
+     * 初始化状态栏-默认蓝色；
+     *
+     * @return
+     */
+    protected int initStatusColor() {
+        return R.color.common_blue;
+    }
 
     /**
      * 初始化 View, 如果 {@link #initView(Bundle)} 返回 0,

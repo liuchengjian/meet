@@ -1,5 +1,6 @@
 package com.lchj.meet.ui;
 
+import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -17,21 +18,19 @@ import com.lchj.meet.R;
 import com.lchj.meet.common.Const;
 import com.lchj.meet.model.User;
 import com.lchj.meet.utils.LiuUtils;
+import com.lchj.meet.utils.PermissionsUtils;
 import com.lchj.meet.widgets.HeaderBar;
+import com.tbruyelle.rxpermissions3.RxPermissions;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.Nullable;
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.bmob.v3.BmobQuery;
-import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
-import cn.bmob.v3.listener.QueryListener;
-import cn.bmob.v3.listener.SaveListener;
 
 /**
  * Author by liuchj,
@@ -46,7 +45,7 @@ public class LoginActivity extends BaseActivity {
     Button mLoginBtn;
     @BindView(R.id.mHeaderBar)
     HeaderBar mHeaderBar;
-
+    final RxPermissions rxPermissions = new RxPermissions(this);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,7 +73,7 @@ public class LoginActivity extends BaseActivity {
             intent.putExtra("phone",etUser.getText().toString().trim());
             startActivity(intent);
         });
-
+        PermissionsUtils.requestPermission(this,rxPermissions);
     }
 
     private void textChange(EditText editText) {
