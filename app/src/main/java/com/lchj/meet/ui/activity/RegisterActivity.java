@@ -1,9 +1,8 @@
-package com.lchj.meet.ui;
+package com.lchj.meet.ui.activity;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
+
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.SaveListener;
@@ -39,7 +38,7 @@ public class RegisterActivity extends BaseActivity {
     }
 
     @Override
-    int initView(@Nullable Bundle savedInstanceState) {
+    public int initView(@Nullable Bundle savedInstanceState) {
         return R.layout.activity_register;
     }
 

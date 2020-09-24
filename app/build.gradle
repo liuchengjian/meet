@@ -31,6 +31,7 @@ android {
         exclude 'META-INF/rxjava.properties'
         exclude 'META-INF/NOTICE'
     }
+    buildToolsVersion = '28.0.3'
 
 }
 
@@ -68,4 +69,5 @@ dependencies {
     implementation 'com.moxun:tagcloudlib:1.2.0'
     //今日头条适配方案
     implementation 'me.jessyan:autosize:1.2.1'
+
 }

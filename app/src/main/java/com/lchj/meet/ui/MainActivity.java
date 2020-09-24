@@ -9,6 +9,7 @@ import android.os.Bundle;
 
 import com.lchj.meet.R;
 import com.lchj.meet.common.Const;
+import com.lchj.meet.ui.activity.BaseActivity;
 import com.lchj.meet.ui.fragment.HomeFragment;
 import com.lchj.meet.ui.fragment.MsgFragment;
 import com.lchj.meet.ui.fragment.MyFragment;
@@ -34,7 +35,7 @@ public class MainActivity extends BaseActivity {
     private MyFragment mMyFragment;
 
     @Override
-    int initView(@Nullable Bundle savedInstanceState) {
+    public int initView(@Nullable Bundle savedInstanceState) {
         return R.layout.activity_main;
     }
 

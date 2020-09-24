@@ -1,4 +1,4 @@
-package com.lchj.meet.ui;
+package com.lchj.meet.ui.activity;
 
 import android.Manifest;
 import android.content.Intent;
@@ -17,6 +17,7 @@ import com.blankj.utilcode.util.SPStaticUtils;
 import com.lchj.meet.R;
 import com.lchj.meet.common.Const;
 import com.lchj.meet.model.User;
+import com.lchj.meet.ui.MainActivity;
 import com.lchj.meet.utils.LiuUtils;
 import com.lchj.meet.utils.PermissionsUtils;
 import com.lchj.meet.widgets.HeaderBar;
@@ -53,7 +54,7 @@ public class LoginActivity extends BaseActivity {
     }
 
     @Override
-    int initView(@Nullable Bundle savedInstanceState) {
+    public int initView(@Nullable Bundle savedInstanceState) {
         return R.layout.activity_login;
     }
 

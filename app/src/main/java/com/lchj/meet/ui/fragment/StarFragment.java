@@ -3,19 +3,16 @@ package com.lchj.meet.ui.fragment;
 import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.lchj.meet.R;
-import com.lchj.meet.ui.AddFriendActivity;
-import com.lchj.meet.ui.ScanActivity;
+import com.lchj.meet.ui.activity.AddFriendActivity;
+import com.lchj.meet.ui.activity.ScanActivity;
 import com.lchj.meet.ui.adapter.CloudTagAdapter;
 import com.lchj.meet.utils.LiuUtils;
 import com.moxun.tagcloudlib.view.TagCloudView;

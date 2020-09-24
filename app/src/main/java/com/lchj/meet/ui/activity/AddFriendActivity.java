@@ -1,4 +1,4 @@
-package com.lchj.meet.ui;
+package com.lchj.meet.ui.activity;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatEditText;
@@ -38,7 +38,7 @@ public class AddFriendActivity extends BaseActivity {
 
 
     @Override
-    int initView(@Nullable Bundle savedInstanceState) {
+    public int initView(@Nullable Bundle savedInstanceState) {
         return R.layout.activity_add_friend;
     }
 

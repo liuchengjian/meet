@@ -1,4 +1,4 @@
-package com.lchj.meet.ui;
+package com.lchj.meet.ui.activity;
 
 import android.os.Bundle;
 
@@ -7,6 +7,9 @@ import com.lchj.meet.utils.StatusBarUtil;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.lchj.meet.R;
+
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
@@ -43,7 +46,7 @@ public abstract class BaseActivity extends AppCompatActivity {
      * @param savedInstanceState
      * @return
      */
-    abstract int initView(@Nullable Bundle savedInstanceState);
+    public abstract int initView(@Nullable Bundle savedInstanceState);
 
     /**
      * 销毁
