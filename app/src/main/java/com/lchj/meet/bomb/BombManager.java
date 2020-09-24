@@ -2,7 +2,11 @@ package com.lchj.meet.bomb;
 
 import android.content.Context;
 
+import com.lchj.meet.model.User;
+
 import cn.bmob.v3.Bmob;
+import cn.bmob.v3.BmobQuery;
+import cn.bmob.v3.listener.FindListener;
 
 public class BombManager {
     private final static String BOMB_SDK_KEY = "d9314358713765e621406c5bc71a0c26";
@@ -24,9 +28,10 @@ public class BombManager {
 
     /**
      * 默认初始化
+     *
      * @param context
      */
-    public void init(Context context){
+    public void init(Context context) {
         //第一：
         Bmob.initialize(context, BOMB_SDK_KEY);
         // 注:自v3.5.2开始，数据sdk内部缝合了统计sdk，开发者无需额外集成，传渠道参数即可，不传默认没开启数据统计功能
@@ -43,5 +48,15 @@ public class BombManager {
         //.setFileExpiration(2500)
         //.build();
         //Bmob.initialize(config);
+    }
+
+    public void queryPhoneUser(String phone, FindListener<User> listener) {
+        baseQuery("phone", phone, listener);
+    }
+
+    public void baseQuery(String key, String value, FindListener<User> listener) {
+        BmobQuery<User> query = new BmobQuery<>();
+        query.addWhereEqualTo(key, value);
+        query.findObjects(listener);
     }
 }

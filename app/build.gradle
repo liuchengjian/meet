@@ -64,4 +64,8 @@ dependencies {
     implementation 'com.jakewharton.rxbinding4:rxbinding:4.0.0'
     //方法数
     implementation 'com.android.support:multidex:1.0.3'
+    //3D星球
+    implementation 'com.moxun:tagcloudlib:1.2.0'
+    //今日头条适配方案
+    implementation 'me.jessyan:autosize:1.2.1'
 }

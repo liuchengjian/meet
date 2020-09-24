@@ -18,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.security.MessageDigest;
+import java.util.List;
 
 import androidx.annotation.NonNull;
 
@@ -74,6 +75,14 @@ public class LiuUtils {
     public static int pix2dip(@NonNull Context context, int pxValue) {
         final float scale = getResources(context).getDisplayMetrics().density;
         return (int) (pxValue / scale + 0.5f);
+    }
+
+    public static boolean isEmpty(List list) {
+        if (list == null || list.isEmpty()) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -356,14 +365,14 @@ public class LiuUtils {
         }
         String[] version1Array = version1.split("\\.");
         String[] version2Array = version2.split("\\.");
-        Log.d("HomePageActivity", "version1Array=="+version1Array.length);
-        Log.d("HomePageActivity", "version2Array=="+version2Array.length);
+        Log.d("HomePageActivity", "version1Array==" + version1Array.length);
+        Log.d("HomePageActivity", "version2Array==" + version2Array.length);
         int index = 0;
         // 获取最小长度值
         int minLen = Math.min(version1Array.length, version2Array.length);
         int diff = 0;
         // 循环判断每位的大小
-        Log.d("HomePageActivity", "verTag2=2222="+version1Array[index]);
+        Log.d("HomePageActivity", "verTag2=2222=" + version1Array[index]);
         while (index < minLen
                 && (diff = Integer.parseInt(version1Array[index])
                 - Integer.parseInt(version2Array[index])) == 0) {

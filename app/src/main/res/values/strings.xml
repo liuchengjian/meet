@@ -3,6 +3,7 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment" tools:ignore="ExtraTranslation">Hello blank fragment</string>
+    <string name="nav_star">星球</string>
     <string name="nav_news">消息</string>
     <string name="nav_approval">审批</string>
     <string name="nav_header">首页</string>

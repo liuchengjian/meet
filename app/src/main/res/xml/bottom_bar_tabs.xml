@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <tabs>
-
+    <tab
+        activeColor="@color/common_blue"
+        icon="@drawable/icon_star"
+        id="@+id/tab_star"
+        title="@string/nav_star"/>
     <tab
         activeColor="@color/common_blue"
         icon="@drawable/icon_msg"
-        id="@+id/tab_home"
+        id="@+id/tab_msg"
         title="@string/nav_news"/>
     <tab
         activeColor="@color/common_blue"
         icon="@drawable/icon_app"
-        id="@+id/tab_order"
+        id="@+id/tab_home"
         title="@string/nav_header"/>
 
     <tab
