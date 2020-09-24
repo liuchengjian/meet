@@ -3,14 +3,14 @@
 
     <tab
         activeColor="@color/common_blue"
-        icon="@drawable/icon_my"
+        icon="@drawable/icon_msg"
         id="@+id/tab_home"
-        title="@string/nav_sealed_group"/>
+        title="@string/nav_news"/>
     <tab
         activeColor="@color/common_blue"
-        icon="@drawable/icon_my"
+        icon="@drawable/icon_app"
         id="@+id/tab_order"
-        title="@string/nav_detection_task"/>
+        title="@string/nav_header"/>
 
     <tab
         activeColor="@color/common_blue"

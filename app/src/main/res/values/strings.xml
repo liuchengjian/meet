@@ -1,5 +1,5 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="app_name">移动应用</string>
+    <string name="app_name">遇见</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment" tools:ignore="ExtraTranslation">Hello blank fragment</string>
@@ -8,4 +8,11 @@
     <string name="nav_header">首页</string>
     <string name="nav_apps">应用</string>
     <string name="nav_my">我的</string>
+
+    <string name="sure">确定</string>
+    <string name="cancel">取消</string>
+    <string name="clear_success">清除成功</string>
+
+    <string name="go_on_exit">再按一次退出</string>
+    <string name="can_not_find_version_name">找不到版本号</string>
 </resources>
