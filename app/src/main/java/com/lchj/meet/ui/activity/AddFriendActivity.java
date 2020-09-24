@@ -82,13 +82,13 @@ public class AddFriendActivity extends BaseActivity {
                     LiuUtils.makeText(this, "电话不能为空");
                     return;
                 }
+                modeList.clear();
                 BombManager.getInstance().queryPhoneUser(phone, new FindListener<User>() {
                     @Override
                     public void done(List<User> list, BmobException e) {
                         if (!LiuUtils.isEmpty(list)) {
                             User user = list.get(0);
 //                            Log.e("user", user.toString());
-                            modeList.clear();
                             addModeTitle("查询结果");
                             addModeContent(user);
                         }
@@ -106,7 +106,6 @@ public class AddFriendActivity extends BaseActivity {
                 if (!LiuUtils.isEmpty(list)) {
                     User user = list.get(0);
 //                            Log.e("user", user.toString());
-                    modeList.clear();
                     addModeTitle("推荐好友");
                     addModeContent(user);
                 }

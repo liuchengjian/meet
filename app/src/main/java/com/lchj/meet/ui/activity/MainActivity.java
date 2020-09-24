@@ -1,4 +1,4 @@
-package com.lchj.meet.ui;
+package com.lchj.meet.ui.activity;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;

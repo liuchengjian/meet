@@ -1,6 +1,7 @@
 package com.lchj.meet.ui.adapter;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,8 +57,8 @@ public class AddFriendAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             ((TitleViewHolder) holder).mTvTitle.setText(mode.getTitle());
         } else {
             ((ContentViewHolder) holder).mTvName.setText(mode.getUserName());
-            ((ContentViewHolder) holder).mTvAge.setText("年纪:" + mode.getAge());
-            ((ContentViewHolder) holder).mTvDesc.setText(mode.getDesc());
+            ((ContentViewHolder) holder).mTvAge.setText(mode.getAge()+" 岁");
+            ((ContentViewHolder) holder).mTvDesc.setText(TextUtils.isEmpty(mode.getDesc())?"暂无":mode.getDesc());
         }
         //点击事件
         holder.itemView.setOnClickListener(new View.OnClickListener() {
