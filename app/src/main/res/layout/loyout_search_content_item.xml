@@ -5,13 +5,13 @@
     android:orientation="horizontal"
     android:layout_margin="5dp"
     android:gravity="center_vertical"
-    android:layout_height="80dp">
+    android:layout_height="match_parent">
     <ImageView
         android:id="@+id/mIvUser"
         android:layout_marginHorizontal="10dp"
-        android:layout_width="wrap_content"
+        android:layout_width="50dp"
         android:src="@drawable/icon_star"
-        android:layout_height="wrap_content"/>
+        android:layout_height="50dp"/>
     <LinearLayout
         android:layout_width="0dp"
         android:layout_weight="1"
@@ -22,19 +22,23 @@
             android:layout_width="wrap_content"
             android:orientation="horizontal"
             android:gravity="center_vertical"
+            android:layout_gravity="center_vertical"
             android:layout_weight="1"
             android:layout_height="0dp">
             <TextView
                 android:id="@+id/mTvName"
                 android:layout_width="wrap_content"
                 tools:text="你好"
+                android:gravity="center_vertical"
                 android:layout_marginHorizontal="10dp"
-                android:layout_height="wrap_content"/>
+                android:layout_height="match_parent"/>
             <TextView
                 android:id="@+id/mTvAge"
                 tools:text="你好"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:gravity="center_vertical"
+                android:layout_marginHorizontal="10dp"
+                android:layout_height="match_parent"
+                android:layout_width="wrap_content" />
         </LinearLayout>
         <TextView
             android:id="@+id/mTvDesc"

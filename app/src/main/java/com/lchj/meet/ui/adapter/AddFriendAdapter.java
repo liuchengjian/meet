@@ -45,8 +45,10 @@ public class AddFriendAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         if (viewType == TYPE_TITLE) {
             return new TitleViewHolder(inflater.inflate(R.layout.loyout_search_title_item, null));
-        } else {
+        } else if (viewType == TYPE_CONTENT) {
             return new ContentViewHolder(inflater.inflate(R.layout.loyout_search_content_item, null));
+        } else {
+            return null;
         }
     }
 
@@ -55,10 +57,10 @@ public class AddFriendAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         AddFriendMode mode = mList.get(position);
         if (mode.getType() == TYPE_TITLE) {
             ((TitleViewHolder) holder).mTvTitle.setText(mode.getTitle());
-        } else {
+        } else if (mode.getType() == TYPE_CONTENT) {
             ((ContentViewHolder) holder).mTvName.setText(mode.getUserName());
-            ((ContentViewHolder) holder).mTvAge.setText(mode.getAge()+" 岁");
-            ((ContentViewHolder) holder).mTvDesc.setText(TextUtils.isEmpty(mode.getDesc())?"暂无":mode.getDesc());
+            ((ContentViewHolder) holder).mTvAge.setText(mode.getAge() + " 岁");
+            ((ContentViewHolder) holder).mTvDesc.setText(TextUtils.isEmpty(mode.getDesc()) ? "暂无" : mode.getDesc());
         }
         //点击事件
         holder.itemView.setOnClickListener(new View.OnClickListener() {

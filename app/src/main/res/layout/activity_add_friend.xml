@@ -7,10 +7,10 @@
     android:orientation="vertical"
     tools:context=".ui.activity.AddFriendActivity">
     <com.lchj.meet.widgets.HeaderBar
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:id="@+id/mHeaderBar"
+        style="@style/MatchWrap"
         app:titleText="添加好友"
-        app:rightText="从通讯录导入"
+        app:rightText="通讯录"
         app:isShowBack="true"
         />
     <LinearLayout

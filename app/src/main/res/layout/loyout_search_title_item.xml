@@ -2,21 +2,18 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="40dp"
+    android:layout_height="match_parent"
+    android:gravity="center_vertical"
     android:orientation="horizontal"
     android:background="@color/common_blue">
     <TextView
         android:id="@+id/mTvTitle"
         android:layout_width="0dp"
-        android:layout_weight="1"
-        android:layout_height="40dp"
-        android:gravity="center_vertical"
+        android:layout_weight="5"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
         android:paddingHorizontal="10dp"
         android:textColor="@color/common_white"
         android:textSize="16sp"
         tools:text="111111111" />
-    <View
-        android:layout_width="0dp"
-        android:layout_weight="1"
-        android:layout_height="wrap_content"/>
 </LinearLayout>

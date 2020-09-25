@@ -9,11 +9,13 @@ import butterknife.OnClick;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.lchj.meet.R;
 import com.lchj.meet.bomb.BombManager;
@@ -21,6 +23,7 @@ import com.lchj.meet.model.AddFriendMode;
 import com.lchj.meet.model.User;
 import com.lchj.meet.ui.adapter.AddFriendAdapter;
 import com.lchj.meet.utils.LiuUtils;
+import com.lchj.meet.widgets.HeaderBar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +36,9 @@ public class AddFriendActivity extends BaseActivity {
     AppCompatEditText mEdPhone;
     @BindView(R.id.mRecyclerView)
     RecyclerView mRecyclerView;
+    @BindView(R.id.mHeaderBar)
+    HeaderBar mHeaderBar;
+
     private AddFriendAdapter mAddFriendAdapter;
     private List<AddFriendMode> modeList = new ArrayList<>();
 
@@ -49,9 +55,24 @@ public class AddFriendActivity extends BaseActivity {
         mAddFriendAdapter = new AddFriendAdapter(this, modeList);
         mRecyclerView.setAdapter(mAddFriendAdapter);
         queryAllUser();
+        mAddFriendAdapter.setOnClickListener(new AddFriendAdapter.OnClickListener() {
+            @Override
+            public void onClick(int pos) {
+                LiuUtils.makeText(AddFriendActivity.this, modeList.get(pos).toString());
+            }
+        });
+        mHeaderBar.getRightView().setText("通讯录");
+        mHeaderBar.getRightView().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //通讯录导入
+                Intent intent = new Intent(AddFriendActivity.this, ContactUserActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
-    private void addModeTitle(String title){
+    private void addModeTitle(String title) {
         AddFriendMode mode = new AddFriendMode();
         mode.setType(AddFriendAdapter.TYPE_TITLE);
         mode.setTitle(title);
@@ -59,7 +80,7 @@ public class AddFriendActivity extends BaseActivity {
 
     }
 
-    private void addModeContent(User user){
+    private void addModeContent(User user) {
         AddFriendMode mode = new AddFriendMode();
         mode.setType(AddFriendAdapter.TYPE_CONTENT);
         mode.setUserId(user.getUserId());
