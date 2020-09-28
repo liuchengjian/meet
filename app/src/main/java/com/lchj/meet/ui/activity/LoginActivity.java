@@ -12,7 +12,9 @@ import android.widget.EditText;
 
 
 import com.blankj.utilcode.util.EncodeUtils;
+import com.blankj.utilcode.util.GsonUtils;
 import com.blankj.utilcode.util.SPStaticUtils;
+import com.blankj.utilcode.util.SPUtils;
 import com.lchj.meet.R;
 import com.lchj.meet.common.Const;
 import com.lchj.meet.model.User;
@@ -45,6 +47,7 @@ public class LoginActivity extends BaseActivity {
     @BindView(R.id.mHeaderBar)
     HeaderBar mHeaderBar;
     final RxPermissions rxPermissions = new RxPermissions(this);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,22 +60,27 @@ public class LoginActivity extends BaseActivity {
     }
 
     private void initView() {
-        mLoginBtn.setEnabled(isBtnEnable());
-        String userName = SPStaticUtils.getString(Const.username);
-        String pwd = SPStaticUtils.getString(Const.pwd);
-        textChange(etUser);
-        textChange(etPwd);
-        if (TextUtils.isEmpty(userName) && !TextUtils.isEmpty(pwd)) {
+        String userStr = SPUtils.getInstance().getString("user");
+        User user = GsonUtils.fromJson(userStr, User.class);
+        String userName = "";
+        String pwd = "";
+        if (user != null) {
+            userName = user.getPhone();
+            pwd = user.getPassword();
             etUser.setText(userName);
             etPwd.setText(pwd);
         }
+        mLoginBtn.setEnabled(isBtnEnable());
+        textChange(etUser);
+        textChange(etPwd);
         mHeaderBar.getRightView().setVisibility(View.VISIBLE);
         mHeaderBar.getRightView().setOnClickListener(view -> {
             Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
-            intent.putExtra("phone",etUser.getText().toString().trim());
+            intent.putExtra("phone", etUser.getText().toString().trim());
             startActivity(intent);
         });
-        PermissionsUtils.requestPermission(this,rxPermissions);
+        PermissionsUtils.requestPermission(this, rxPermissions);
+
     }
 
     private void textChange(EditText editText) {
@@ -149,9 +157,10 @@ public class LoginActivity extends BaseActivity {
                 if (e == null) {
                     if (!object.isEmpty()) {
                         User user = object.get(0);
+                        LiuUtils.makeText(LoginActivity.this, "登录成功");
+                        SPUtils.getInstance().put("user", GsonUtils.toJson(user));
                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                         startActivity(intent);
-                        LiuUtils.makeText(LoginActivity.this, "登录成功");
                         finish();
                     }
                 } else {
