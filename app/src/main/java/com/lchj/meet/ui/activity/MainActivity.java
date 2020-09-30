@@ -43,9 +43,20 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initFragment(savedInstanceState);
+        createToken();
     }
 
     /**
+     * 创建token
+     */
+    private void createToken() {
+        //1.去融云后台获取token
+        //2.连接融云
+
+     }
+
+
+     /**
      * 初始化Fragment
      */
     private void initFragment(Bundle savedInstanceState) {
