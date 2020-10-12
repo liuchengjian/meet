@@ -4,21 +4,42 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import butterknife.BindView;
+import io.reactivex.Observable;
+import io.reactivex.ObservableEmitter;
+import io.reactivex.ObservableOnSubscribe;
+import io.reactivex.Scheduler;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Log;
 
+import com.blankj.utilcode.util.GsonUtils;
+import com.blankj.utilcode.util.JsonUtils;
+import com.blankj.utilcode.util.LogUtils;
+import com.blankj.utilcode.util.SPUtils;
 import com.lchj.meet.R;
+import com.lchj.meet.bomb.BombManager;
 import com.lchj.meet.common.Const;
+import com.lchj.meet.http.OkHttpManager;
+import com.lchj.meet.model.TokenBean;
+import com.lchj.meet.model.User;
 import com.lchj.meet.ui.activity.BaseActivity;
 import com.lchj.meet.ui.fragment.HomeFragment;
 import com.lchj.meet.ui.fragment.MsgFragment;
 import com.lchj.meet.ui.fragment.MyFragment;
 import com.lchj.meet.ui.fragment.StarFragment;
+import com.lchj.meet.ui.service.CloudService;
 import com.lchj.meet.utils.FragmentUtils;
 import com.lchj.meet.utils.LiuUtils;
 import com.roughike.bottombar.BottomBar;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class MainActivity extends BaseActivity {
@@ -33,6 +54,7 @@ public class MainActivity extends BaseActivity {
     private MsgFragment mMsgFragment;
     private HomeFragment mHomeFragment;
     private MyFragment mMyFragment;
+    Disposable disposable;
 
     @Override
     public int initView(@Nullable Bundle savedInstanceState) {
@@ -43,7 +65,12 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initFragment(savedInstanceState);
-        createToken();
+       String token =  SPUtils.getInstance().getString(Const.CLOUD_TOKEN);
+        if(TextUtils.isEmpty(token)){
+            createToken();
+        }else {
+            startCloudService();
+        }
     }
 
     /**
@@ -52,11 +79,42 @@ public class MainActivity extends BaseActivity {
     private void createToken() {
         //1.去融云后台获取token
         //2.连接融云
+        String userStr = SPUtils.getInstance().getString("user");
+        User user = GsonUtils.fromJson(userStr, User.class);
+        HashMap<String, String> map = new HashMap<>();
+        map.put("userId", user.getUserId());
+        map.put("name", user.getUserName());
+        map.put("portraitUri", "1111111");
+        disposable = Observable.create(new ObservableOnSubscribe<String>() {
+            @Override
+            public void subscribe(ObservableEmitter<String> emitter) throws Exception {
+                String json = OkHttpManager.getInstance().postCloudToken(map);
+                emitter.onNext(json);
+                emitter.onComplete();
+            }
+            //线程调度
+        }).subscribeOn(Schedulers.newThread())
+                .subscribeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<String>() {
+                    @Override
+                    public void accept(String s) throws Exception {
+                        Log.e("s", s);
+                        TokenBean bean = GsonUtils.fromJson(s, TokenBean.class);
+                        if (bean.getCode() == 200) {
+                            if (!TextUtils.isEmpty(bean.getToken())) {
+                                SPUtils.getInstance().put(Const.CLOUD_TOKEN, bean.getToken());
+                                startCloudService();
+                            }
+                        }
+                    }
+                });
+    }
 
-     }
+    private void startCloudService() {
+        startService(new Intent(this, CloudService.class));
+    }
 
-
-     /**
+    /**
      * 初始化Fragment
      */
     private void initFragment(Bundle savedInstanceState) {
@@ -116,6 +174,14 @@ public class MainActivity extends BaseActivity {
             }
             FragmentUtils.hideAllShowFragment(mFragments.get(mReplace));
         });
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (disposable.isDisposed()) {
+            disposable.dispose();
+        }
     }
 
     /**

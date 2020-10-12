@@ -15,5 +15,6 @@ public interface Const {
     String pwd = "pwd";
     String AutomaticLogin = "AutomaticLogin";//自动登录
     String ACTIVITY_FRAGMENT_REPLACE = "ActivityFragmentReplace";
+    String CLOUD_TOKEN= "CLOUD_TOKEN";
 
 }
