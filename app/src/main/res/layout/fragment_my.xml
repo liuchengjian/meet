@@ -32,6 +32,7 @@
                 android:layout_height="wrap_content"/>
         </RelativeLayout>
         <LinearLayout
+            android:id="@+id/mLLNewFriend"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -44,14 +45,14 @@
                 android:orientation="horizontal"
                 >
                 <ImageView
-                    tools:src="@drawable/icon_logo"
+                    android:src="@drawable/icon_logo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_marginLeft="10dp"
-                    tools:text="@string/app_name"
+                    android:text="新朋友"
                     android:textSize="18sp"
                     android:layout_height="wrap_content"/>
                 <ImageView

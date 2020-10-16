@@ -49,8 +49,7 @@ public class AddFriendActivity extends BaseActivity {
     }
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public void initData(@Nullable Bundle savedInstanceState) {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mAddFriendAdapter = new AddFriendAdapter(this, modeList);
         mRecyclerView.setAdapter(mAddFriendAdapter);
@@ -58,7 +57,7 @@ public class AddFriendActivity extends BaseActivity {
         mAddFriendAdapter.setOnClickListener(new AddFriendAdapter.OnClickListener() {
             @Override
             public void onClick(int pos) {
-                LiuUtils.makeText(AddFriendActivity.this, modeList.get(pos).toString());
+                UserInfoActivity.startActivity(AddFriendActivity.this, modeList.get(pos).getUserId());
             }
         });
         mHeaderBar.getRightView().setText("通讯录");
@@ -83,14 +82,13 @@ public class AddFriendActivity extends BaseActivity {
     private void addModeContent(User user) {
         AddFriendMode mode = new AddFriendMode();
         mode.setType(AddFriendAdapter.TYPE_CONTENT);
-        mode.setUserId(user.getUserId());
+        mode.setUserId(user.getObjectId());
         mode.setUserName(user.getUserName());
         mode.setAge(user.getAge());
         mode.setDesc(user.getDesc());
         mode.setPhone(user.getPhone());
         mode.setSex(mode.getSex());
         modeList.add(mode);
-        mAddFriendAdapter.notifyDataSetChanged();
 
     }
 
@@ -112,10 +110,11 @@ public class AddFriendActivity extends BaseActivity {
 //                            Log.e("user", user.toString());
                             addModeTitle("查询结果");
                             addModeContent(user);
+                            mAddFriendAdapter.notifyDataSetChanged();
                         }
+                        queryAllUser();
                     }
                 });
-                queryAllUser();
                 break;
         }
     }
@@ -125,10 +124,13 @@ public class AddFriendActivity extends BaseActivity {
             @Override
             public void done(List<User> list, BmobException e) {
                 if (!LiuUtils.isEmpty(list)) {
-                    User user = list.get(0);
-//                            Log.e("user", user.toString());
+//                    User user = list.get(0);
                     addModeTitle("推荐好友");
-                    addModeContent(user);
+                    for(User user:list){
+                        addModeContent(user);
+                    }
+                    mAddFriendAdapter.notifyDataSetChanged();
+
                 }
             }
         });

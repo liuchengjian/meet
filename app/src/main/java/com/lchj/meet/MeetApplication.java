@@ -9,6 +9,8 @@ import com.lchj.meet.bomb.BombManager;
 import com.lchj.meet.cloud.CloudManager;
 import com.lchj.meet.utils.LiuUtils;
 
+import org.litepal.LitePal;
+
 import androidx.multidex.MultiDex;
 import io.rong.imlib.RongIMClient;
 
@@ -23,6 +25,7 @@ public class MeetApplication extends Application {
         if(getApplicationInfo().packageName.equals(getCurProcessName(getApplicationContext()))){
             BombManager.getInstance().init(this);
             CloudManager.getInstance().init(this);
+            LitePal.initialize(this);
         }
     }
     /**

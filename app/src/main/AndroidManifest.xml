@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.lchj.meet">
-    <!-- 获取GSM（2g）、WCDMA（联通3g）等网络状态的信息 -->
+    <!-- 允许读取手机状态 用于创建BmobInstallation -->
     <application
         android:name=".MeetApplication"
         android:allowBackup="true"
@@ -13,7 +13,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".ui.activity.ContactUserActivity"></activity>
+        <activity android:name=".ui.activity.NewFriendActivity"></activity>
+        <activity android:name=".ui.activity.ChatActivity" />
+        <activity android:name=".ui.activity.UserInfoActivity" />
+        <activity android:name=".ui.activity.ContactUserActivity" />
         <activity android:name=".ui.activity.ScanActivity" />
         <activity android:name=".ui.activity.AddFriendActivity" />
         <!--
@@ -30,7 +33,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <service android:name=".ui.service.CloudService"/>
 
         <meta-data
             android:name="design_height_in_dp"
@@ -42,18 +44,23 @@
         <provider
             android:name="cn.bmob.v3.util.BmobContentProvider"
             android:authorities="com.lchj.meet.BmobContentProvider" />
-        <receiver android:name=".receiver.SealNotificationReceiver"
+
+        <receiver
+            android:name=".receiver.SealNotificationReceiver"
             android:exported="true">
             <intent-filter>
-                <action android:name="io.rong.push.intent.MESSAGE_ARRIVED"/>
-                <action android:name="io.rong.push.intent.MESSAGE_CLICKED"/>
-                <action android:name="io.rong.push.intent.THIRD_PARTY_PUSH_STATE"/>
+                <action android:name="io.rong.push.intent.MESSAGE_ARRIVED" />
+                <action android:name="io.rong.push.intent.MESSAGE_CLICKED" />
+                <action android:name="io.rong.push.intent.THIRD_PARTY_PUSH_STATE" />
             </intent-filter>
         </receiver>
 
-    </application> <!-- 保持CPU 运转，屏幕和键盘灯有可能是关闭的,用于文件上传和下载 -->
-    <uses-permission android:name="android.permission.INTERNET" /> <!-- 获取sd卡写的权限，用于文件上传和下载 -->
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> <!-- 允许读取手机状态 用于创建BmobInstallation -->
+        <service
+            android:name=".ui.service.CloudService"
+            android:exported="true"/>
+    </application>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />

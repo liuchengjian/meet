@@ -25,6 +25,7 @@ import com.blankj.utilcode.util.SPUtils;
 import com.lchj.meet.R;
 import com.lchj.meet.bomb.BombManager;
 import com.lchj.meet.common.Const;
+import com.lchj.meet.event.MessageEvent;
 import com.lchj.meet.http.OkHttpManager;
 import com.lchj.meet.model.TokenBean;
 import com.lchj.meet.model.User;
@@ -62,15 +63,21 @@ public class MainActivity extends BaseActivity {
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public void initData(@Nullable Bundle savedInstanceState) {
         initFragment(savedInstanceState);
-       String token =  SPUtils.getInstance().getString(Const.CLOUD_TOKEN);
-        if(TextUtils.isEmpty(token)){
-            createToken();
-        }else {
-            startCloudService();
-        }
+        String token =  SPUtils.getInstance().getString(Const.CLOUD_TOKEN);
+        createToken();
+//        if(TextUtils.isEmpty(token)){
+//            createToken();
+//        }else {
+//            startCloudService();
+//        }
+    }
+
+    @Override
+    public void onMessageEvent(MessageEvent event) {
+        super.onMessageEvent(event);
+        LiuUtils.makeText(this,"event");
     }
 
     /**
@@ -111,7 +118,21 @@ public class MainActivity extends BaseActivity {
     }
 
     private void startCloudService() {
-        startService(new Intent(this, CloudService.class));
+        Intent intent = new Intent(this, CloudService.class);
+        startService(intent);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+//        Intent intent = new Intent(this, CloudService.class);
+//        stopService(intent);
     }
 
     /**

@@ -143,4 +143,10 @@
         <item name="android:layout_margin">@dimen/common_margin</item>
         <item name="android:enabled">false</item>
     </style>
+
+    <style name="SendBtnStyle">
+        <item name="android:textColor">@color/common_white</item>
+        <item name="android:background">@drawable/btn_common_selector</item>
+        <item name="android:enabled">false</item>
+    </style>
 </resources>

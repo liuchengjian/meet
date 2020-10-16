@@ -2,7 +2,7 @@ package com.lchj.meet.model;
 
 import cn.bmob.v3.BmobObject;
 
-public class User extends BmobObject {
+public class NewFriendUser extends BmobObject {
     private String userName;
     private String userId;
     private String phone;
@@ -14,6 +14,7 @@ public class User extends BmobObject {
     private String constellation;//星座
     private String hobby;//爱好
     private String status;//单身状态
+    private int isAgree;
 
     public String getBirthday() {
         return birthday;
@@ -101,5 +102,14 @@ public class User extends BmobObject {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+
+    public int getIsAgree() {
+        return isAgree;
+    }
+
+    public void setIsAgree(int isAgree) {
+        this.isAgree = isAgree;
     }
 }

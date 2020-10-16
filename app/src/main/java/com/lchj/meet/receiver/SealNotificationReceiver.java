@@ -21,4 +21,4 @@ public class SealNotificationReceiver extends PushMessageReceiver {
     public boolean onNotificationMessageClicked(Context context, PushType pushType, PushNotificationMessage pushNotificationMessage) {
         return true;
     }
-}
+            }

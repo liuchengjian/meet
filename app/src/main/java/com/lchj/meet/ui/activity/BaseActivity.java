@@ -3,12 +3,17 @@ package com.lchj.meet.ui.activity;
 import android.os.Bundle;
 
 import com.lchj.meet.R;
+import com.lchj.meet.event.EventManager;
+import com.lchj.meet.event.MessageEvent;
 import com.lchj.meet.utils.StatusBarUtil;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.lchj.meet.R;
+
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -25,11 +30,13 @@ public abstract class BaseActivity extends AppCompatActivity {
             setContentView(layoutResID);
             //绑定到butterknife
             mUnbinder = ButterKnife.bind(this);
+            EventManager.register(this);
+            EventManager.post(EventManager.EVENT_TEXT);
         }
         if (initStatusColor() != 0) {
             StatusBarUtil.setStatusColor(this, false, true, initStatusColor());
         }
-
+        initData(savedInstanceState);
     }
     /**
      * 初始化状态栏-默认蓝色；
@@ -47,7 +54,7 @@ public abstract class BaseActivity extends AppCompatActivity {
      * @return
      */
     public abstract int initView(@Nullable Bundle savedInstanceState);
-
+    public abstract void initData(@Nullable Bundle savedInstanceState);
     /**
      * 销毁
      */
@@ -56,6 +63,11 @@ public abstract class BaseActivity extends AppCompatActivity {
         super.onDestroy();
         if (mUnbinder != null && mUnbinder != Unbinder.EMPTY) mUnbinder.unbind();
         this.mUnbinder = null;
+        EventManager.unregister(this);
     }
 
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(MessageEvent event) {
+        /* Do something */
+    };
 }

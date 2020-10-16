@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import butterknife.BindView;
+import butterknife.OnClick;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +16,7 @@ import com.blankj.utilcode.util.GsonUtils;
 import com.blankj.utilcode.util.SPUtils;
 import com.lchj.meet.R;
 import com.lchj.meet.model.User;
+import com.lchj.meet.ui.activity.NewFriendActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -50,5 +52,14 @@ public class MyFragment extends BaseFragment {
         String userStr = SPUtils.getInstance().getString("user");
         User user = GsonUtils.fromJson(userStr, User.class);
         mTvUser.setText(user.getUserName());
+    }
+
+    @OnClick({R.id.mLLNewFriend})
+    void OnClick(View v){
+        switch (v.getId()){
+            case R.id.mLLNewFriend:
+                NewFriendActivity.startActivity(getActivity());
+                break;
+        }
     }
 }

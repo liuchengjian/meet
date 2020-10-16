@@ -37,8 +37,7 @@ public class ContactUserActivity extends BaseActivity {
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public void initData(@Nullable Bundle savedInstanceState) {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mAdapter = new AddFriendAdapter(this, mList);
         mRecyclerView.setAdapter(mAdapter);

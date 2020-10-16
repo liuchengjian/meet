@@ -2,6 +2,9 @@ package com.lchj.meet.bomb;
 
 import android.content.Context;
 
+import com.blankj.utilcode.util.GsonUtils;
+import com.blankj.utilcode.util.SPUtils;
+import com.lchj.meet.model.Friend;
 import com.lchj.meet.model.User;
 
 import cn.bmob.v3.Bmob;
@@ -49,13 +52,39 @@ public class BombManager {
         //.build();
         //Bmob.initialize(config);
     }
-
+    public User getUser(){
+        String userStr = SPUtils.getInstance().getString("user");
+        User user = GsonUtils.fromJson(userStr, User.class);
+        return user;
+    }
     public void queryPhoneUser(String phone, FindListener<User> listener) {
         baseQuery("phone", phone, listener);
+    }
+    public void queryUserId(String userId, FindListener<User> listener) {
+        baseQuery("userId", userId, listener);
     }
 
     public void queryAllUser(FindListener<User> listener) {
         BmobQuery<User> query = new BmobQuery<>();
+        query.findObjects(listener);
+    }
+
+    /**
+     * 判断是不是我的好友
+     * @param listener
+     */
+    public void queryMyFriend(FindListener<Friend> listener) {
+        BmobQuery<Friend> query = new BmobQuery<>();
+        query.addWhereEqualTo("user",getUser() );
+        query.findObjects(listener);
+    }
+
+    /**
+     * 查询所有好友
+     * @param listener
+     */
+    public void queryAllFriend(FindListener<Friend> listener) {
+        BmobQuery<Friend> query = new BmobQuery<>();
         query.findObjects(listener);
     }
 

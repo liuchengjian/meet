@@ -72,5 +72,9 @@ dependencies {
     //融云
 //    api 'cn.rongcloud.sdk:im_lib:2.10.5'
     implementation project(path: ':IMLib')
+    //litepal数据库
+    implementation 'org.litepal.guolindev:core:3.2.2'
+    //eventbus
+    implementation 'org.greenrobot:eventbus:3.2.0'
 
 }

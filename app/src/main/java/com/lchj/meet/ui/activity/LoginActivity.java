@@ -48,18 +48,14 @@ public class LoginActivity extends BaseActivity {
     HeaderBar mHeaderBar;
     final RxPermissions rxPermissions = new RxPermissions(this);
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        initView();
-    }
 
     @Override
     public int initView(@Nullable Bundle savedInstanceState) {
         return R.layout.activity_login;
     }
 
-    private void initView() {
+    @Override
+    public void initData(@Nullable Bundle savedInstanceState) {
         String userStr = SPUtils.getInstance().getString("user");
         User user = GsonUtils.fromJson(userStr, User.class);
         String userName = "";

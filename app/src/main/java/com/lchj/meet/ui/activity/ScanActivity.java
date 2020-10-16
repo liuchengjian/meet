@@ -15,4 +15,9 @@ public class ScanActivity extends BaseActivity {
     public int initView(@Nullable Bundle savedInstanceState) {
         return R.layout.activity_scan;
     }
+
+    @Override
+    public void initData(@Nullable Bundle savedInstanceState) {
+
+    }
 }

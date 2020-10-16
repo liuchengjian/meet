@@ -6,7 +6,11 @@
         android:id="@+id/mHeaderBar"
         app:titleText="注册"
         style="@style/MatchWrap"/>
-    <LinearLayout android:background="@color/common_bg"
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+     <LinearLayout android:background="@color/common_bg"
         android:layout_margin="@dimen/common_margin"
         style="@style/MatchWrap.Vertical">
         <LinearLayout style="@style/MatchWrap.Horizontal">
@@ -59,8 +63,134 @@
             android:drawableLeft="@drawable/icon_lock"
             android:drawablePadding="@dimen/common_padding_small"
             android:inputType="textPassword"/>
+        <View style="@style/DividerFixedHeight"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:gravity="center_vertical"
+            android:layout_height="40dp">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_gravity="center_vertical"
+                android:text="性别："
+                android:layout_height="wrap_content"/>
+            <RadioGroup
+                android:id="@+id/mRGSex"
+                android:layout_width="wrap_content"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content">
+                <RadioButton
+                    android:id="@+id/mRBNan"
+                    android:text="男"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <RadioButton
+                    android:id="@+id/mRBNue"
+                    android:text="女"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </RadioGroup>
+        </LinearLayout>
+        <View style="@style/DividerFixedHeight"/>
+        <EditText android:id="@+id/etName"
+            android:background="@null"
+            android:paddingLeft="@dimen/common_padding_small"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/common_line_height"
+            android:hint="请输入昵称"
+            android:drawableLeft="@drawable/icon_star"
+            android:drawablePadding="@dimen/common_padding_small"
+            />
+        <View style="@style/DividerFixedHeight"/>
+        <EditText android:id="@+id/etAge"
+            android:background="@null"
+            android:paddingLeft="@dimen/common_padding_small"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/common_line_height"
+            android:hint="请输入年龄"
+            android:drawableLeft="@drawable/icon_star_1"
+            android:drawablePadding="@dimen/common_padding_small"
+           />
+        <View style="@style/DividerFixedHeight"/>
+        <View style="@style/DividerFixedHeight"/>
+        <EditText android:id="@+id/etConstellation"
+            android:background="@null"
+            android:paddingLeft="@dimen/common_padding_small"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/common_line_height"
+            android:hint="请输入星座"
+            android:drawableLeft="@drawable/icon_star_2"
+            android:drawablePadding="@dimen/common_padding_small"
+            />
+        <View style="@style/DividerFixedHeight"/>
+        <EditText android:id="@+id/etHobby"
+            android:background="@null"
+            android:paddingLeft="@dimen/common_padding_small"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/common_line_height"
+            android:hint="请输入爱好"
+            android:drawableLeft="@drawable/icon_star_3"
+            android:drawablePadding="@dimen/common_padding_small"
+           />
+        <View style="@style/DividerFixedHeight"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="生日："
+                android:layout_height="match_parent"/>
+            <TextView
+                android:id="@+id/mTvBirthday"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_gravity="center_vertical"
+                android:gravity="center_vertical|right"
+                android:text="请选择"
+                android:layout_height="match_parent"/>
+        </LinearLayout>
+        <View style="@style/DividerFixedHeight"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:gravity="center_vertical"
+            android:layout_height="40dp">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="状态："
+                android:layout_height="match_parent"/>
+            <RadioGroup
+                android:id="@+id/mRGStatus"
+                android:layout_width="wrap_content"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content">
+                <RadioButton
+                    android:id="@+id/mRBDanSheng"
+                    android:text="单身"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <RadioButton
+                    android:id="@+id/mRBLianAi"
+                    android:text="恋爱"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <RadioButton
+                    android:id="@+id/mRBBaomi"
+                    android:text="保密"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            </RadioGroup>
+        </LinearLayout>
+        <View style="@style/DividerFixedHeight"/>
     </LinearLayout>
+    </ScrollView>
     <Button android:id="@+id/mRegisterBtn"
         style="@style/FullBtnStyle"
+        android:layout_marginBottom="40dp"
+        android:layout_marginTop="40dp"
         android:text="注册"/>
 </LinearLayout>
